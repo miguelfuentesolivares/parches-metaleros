@@ -9,589 +9,126 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
-    --black: #0a0a0a;
-    --white: #ffffff;
-    --gray-100: #f5f5f5;
-    --gray-200: #e8e8e8;
-    --gray-400: #aaaaaa;
-    --gray-600: #666666;
-    --red: #cc0000;
-    --font-display: 'Bebas Neue', sans-serif;
-    --font-body: 'Inter', sans-serif;
+    --black: #0a0a0a; --white: #ffffff; --gray-100: #f5f5f5;
+    --gray-200: #e8e8e8; --gray-400: #aaaaaa; --gray-600: #666666;
+    --red: #cc0000; --font-display: 'Bebas Neue', sans-serif; --font-body: 'Inter', sans-serif;
   }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--font-body);
-    background: var(--white);
-    color: var(--black);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* HEADER */
-  header {
-    background: var(--black);
-    padding: 0 32px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-  }
-
-  .logo-img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    filter: invert(1);
-  }
-
-  .logo-text {
-    font-family: var(--font-display);
-    font-size: 22px;
-    color: var(--white);
-    letter-spacing: 0.06em;
-    line-height: 1;
-  }
-
-  .logo-sub {
-    font-size: 9px;
-    color: var(--gray-400);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
-
-  nav {
-    display: flex;
-    gap: 28px;
-    align-items: center;
-  }
-
-  nav a {
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gray-400);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
+  body { font-family: var(--font-body); background: var(--white); color: var(--black); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  header { background: var(--black); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1a1a1a; }
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .logo-text { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 0.06em; line-height: 1; }
+  .logo-sub { font-size: 9px; color: var(--gray-400); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px; }
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
   nav a:hover { color: var(--white); }
-
-  /* HERO STRIP */
-  .hero {
-    background: var(--black);
-    padding: 40px 32px 36px;
-    border-bottom: 1px solid #1a1a1a;
-  }
-
-  .hero h1 {
-    font-family: var(--font-display);
-    font-size: clamp(48px, 8vw, 96px);
-    color: var(--white);
-    letter-spacing: 0.04em;
-    line-height: 0.92;
-    margin-bottom: 12px;
-  }
-
+  .hero { background: var(--black); padding: 40px 32px 36px; border-bottom: 1px solid #1a1a1a; }
+  .hero h1 { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); color: var(--white); letter-spacing: 0.04em; line-height: 0.92; margin-bottom: 12px; }
   .hero h1 span { color: var(--red); }
-
-  .hero p {
-    font-size: 13px;
-    color: var(--gray-400);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* FILTERS */
-  .filters {
-    padding: 16px 32px;
-    border-bottom: 1px solid var(--gray-200);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    background: var(--white);
-    position: sticky;
-    top: 64px;
-    z-index: 90;
-  }
-
-  .search-wrap {
-    position: relative;
-    flex: 1;
-    min-width: 180px;
-    max-width: 280px;
-  }
-
-  .search-wrap svg {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 14px;
-    height: 14px;
-    stroke: var(--gray-400);
-  }
-
-  input[type="search"] {
-    width: 100%;
-    height: 34px;
-    border: 1px solid var(--gray-200);
-    border-radius: 4px;
-    padding: 0 12px 0 32px;
-    font-size: 13px;
-    font-family: var(--font-body);
-    color: var(--black);
-    background: var(--gray-100);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
+  .hero p { font-size: 13px; color: var(--gray-400); letter-spacing: 0.08em; text-transform: uppercase; }
+  .filters { padding: 16px 32px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--white); position: sticky; top: 64px; z-index: 90; }
+  .search-wrap { position: relative; flex: 1; min-width: 180px; max-width: 280px; }
+  .search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--gray-400); }
+  input[type="search"] { width: 100%; height: 34px; border: 1px solid var(--gray-200); border-radius: 4px; padding: 0 12px 0 32px; font-size: 13px; font-family: var(--font-body); color: var(--black); background: var(--gray-100); outline: none; transition: border-color 0.2s; }
   input[type="search"]:focus { border-color: var(--black); background: var(--white); }
-
-  select {
-    height: 34px;
-    border: 1px solid var(--gray-200);
-    border-radius: 4px;
-    padding: 0 28px 0 10px;
-    font-size: 12px;
-    font-family: var(--font-body);
-    color: var(--black);
-    background: var(--gray-100);
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    transition: border-color 0.2s;
-  }
-
+  select { height: 34px; border: 1px solid var(--gray-200); border-radius: 4px; padding: 0 28px 0 10px; font-size: 12px; font-family: var(--font-body); color: var(--black); background: var(--gray-100); outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: border-color 0.2s; }
   select:focus { border-color: var(--black); }
-
-  .filter-toggle {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--gray-600);
-    cursor: pointer;
-    user-select: none;
-    padding: 0 4px;
-  }
-
+  .filter-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-600); cursor: pointer; user-select: none; padding: 0 4px; }
   .filter-toggle input { cursor: pointer; accent-color: var(--black); }
-
-  .results-count {
-    margin-left: auto;
-    font-size: 11px;
-    color: var(--gray-400);
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-  }
-
-  /* GRID */
-  .grid-wrap { padding: 0; }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1px;
-    background: var(--gray-200);
-  }
-
-  /* PRODUCT CARD */
-  .card {
-    background: var(--white);
-    cursor: pointer;
-    transition: background 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-
+  .results-count { margin-left: auto; font-size: 11px; color: var(--gray-400); letter-spacing: 0.06em; white-space: nowrap; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--gray-200); }
+  .card { background: var(--white); cursor: pointer; transition: background 0.15s; position: relative; overflow: hidden; }
   .card:hover { background: var(--gray-100); }
-
-  .card-img-wrap {
-    aspect-ratio: 1;
-    overflow: hidden;
-    background: var(--gray-100);
-    position: relative;
-  }
-
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-    display: block;
-  }
-
+  .card-img-wrap { aspect-ratio: 1; overflow: hidden; background: var(--gray-100); position: relative; }
+  .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
   .card:hover img { transform: scale(1.04); }
-
-  .card-img-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--gray-100);
-  }
-
-  .card-img-placeholder svg {
-    width: 40px;
-    height: 40px;
-    stroke: var(--gray-200);
-    fill: none;
-  }
-
-  .card-body {
-    padding: 12px 14px 16px;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  .card-band {
-    font-size: 10px;
-    color: var(--gray-400);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .card-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--black);
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .card-price {
-    font-family: var(--font-display);
-    font-size: 20px;
-    color: var(--black);
-    letter-spacing: 0.02em;
-  }
-
-  .card-type {
-    font-size: 9px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-600);
-    padding: 3px 8px;
-    border: 1px solid var(--gray-200);
-    border-radius: 2px;
-  }
-
-  .card-attrs {
-    font-size: 11px;
-    color: var(--gray-400);
-    margin-top: 4px;
-    line-height: 1.4;
-  }
-
-  /* SIN STOCK */
-  .card.out-of-stock .card-img-wrap::after {
-    content: 'SIN STOCK';
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: var(--black);
-    color: var(--white);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    padding: 3px 7px;
-    font-family: var(--font-body);
-    font-weight: 500;
-  }
-
+  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--gray-100); }
+  .card-img-placeholder svg { width: 40px; height: 40px; stroke: var(--gray-200); fill: none; }
+  .card-body { padding: 12px 14px 16px; border-top: 1px solid var(--gray-200); }
+  .card-band { font-size: 10px; color: var(--gray-400); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
+  .card-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 10px; line-height: 1.3; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; }
+  .card-price { font-family: var(--font-display); font-size: 20px; color: var(--black); letter-spacing: 0.02em; }
+  .card-type { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); padding: 3px 8px; border: 1px solid var(--gray-200); border-radius: 2px; }
+  .card-attrs { font-size: 11px; color: var(--gray-400); margin-top: 4px; line-height: 1.4; }
+  .card.out-of-stock .card-img-wrap::after { content: 'SIN STOCK'; position: absolute; top: 10px; left: 10px; background: var(--black); color: var(--white); font-size: 9px; letter-spacing: 0.14em; padding: 3px 7px; font-family: var(--font-body); font-weight: 500; }
   .card.out-of-stock { opacity: 0.5; }
-
-  /* EMPTY STATE */
-  .empty {
-    grid-column: 1 / -1;
-    padding: 80px 32px;
-    text-align: center;
-    background: var(--white);
-  }
-
-  .empty p {
-    font-size: 13px;
-    color: var(--gray-400);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* LOADING */
-  .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 32px;
-    gap: 8px;
-    font-size: 12px;
-    color: var(--gray-400);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .spinner {
-    width: 16px;
-    height: 16px;
-    border: 2px solid var(--gray-200);
-    border-top-color: var(--black);
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-  }
-
+  .empty { grid-column: 1 / -1; padding: 80px 32px; text-align: center; background: var(--white); }
+  .empty p { font-size: 13px; color: var(--gray-400); letter-spacing: 0.08em; text-transform: uppercase; }
+  .loading { display: flex; align-items: center; justify-content: center; padding: 80px 32px; gap: 8px; font-size: 12px; color: var(--gray-400); letter-spacing: 0.1em; text-transform: uppercase; }
+  .spinner { width: 16px; height: 16px; border: 2px solid var(--gray-200); border-top-color: var(--black); border-radius: 50%; animation: spin 0.7s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ERROR */
-  .error {
-    padding: 40px 32px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--red);
-    letter-spacing: 0.06em;
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
+  .error { padding: 40px 32px; text-align: center; font-size: 13px; color: var(--red); letter-spacing: 0.06em; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
-
-  .modal {
-    background: var(--white);
-    max-width: 600px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-  }
-
-  .modal-img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    display: block;
-    background: var(--gray-100);
-  }
-
-  .modal-img-placeholder {
-    width: 100%;
-    aspect-ratio: 1;
-    background: var(--gray-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  .modal { background: var(--white); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+  .modal-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: var(--gray-100); }
+  .modal-img-placeholder { width: 100%; aspect-ratio: 1; background: var(--gray-100); display: flex; align-items: center; justify-content: center; }
   .modal-img-placeholder svg { width: 64px; height: 64px; stroke: var(--gray-200); fill: none; }
-
   .modal-body { padding: 24px 28px 32px; }
-
-  .modal-band {
-    font-size: 11px;
-    color: var(--gray-400);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .modal-name {
-    font-family: var(--font-display);
-    font-size: 36px;
-    letter-spacing: 0.04em;
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-
-  .modal-meta {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-  }
-
-  .modal-price {
-    font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 0.02em;
-  }
-
-  .modal-type {
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-600);
-    padding: 4px 10px;
-    border: 1px solid var(--gray-200);
-    border-radius: 2px;
-  }
-
-  .modal-stock {
-    font-size: 11px;
-    color: var(--gray-400);
-    letter-spacing: 0.06em;
-    margin-left: auto;
-  }
-
-  .modal-desc {
-    font-size: 14px;
-    color: var(--gray-600);
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .modal-attrs {
-    font-size: 12px;
-    color: var(--gray-400);
-    line-height: 1.6;
-    padding-top: 12px;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 32px;
-    height: 32px;
-    background: rgba(0,0,0,0.6);
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-    z-index: 10;
-  }
-
+  .modal-band { font-size: 11px; color: var(--gray-400); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
+  .modal-name { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 16px; }
+  .modal-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+  .modal-price { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.02em; }
+  .modal-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); padding: 4px 10px; border: 1px solid var(--gray-200); border-radius: 2px; }
+  .modal-stock { font-size: 11px; color: var(--gray-400); letter-spacing: 0.06em; margin-left: auto; }
+  .modal-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 12px; }
+  .modal-attrs { font-size: 12px; color: var(--gray-400); line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--gray-200); }
+  .modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; background: rgba(0,0,0,0.6); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 2px; z-index: 10; }
   .modal-close svg { width: 14px; height: 14px; stroke: white; }
-
-  /* FOOTER */
-  footer {
-    background: var(--black);
-    padding: 24px 32px;
-    margin-top: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  footer span {
-    font-size: 11px;
-    color: var(--gray-600);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* RESPONSIVE */
+  footer { background: var(--black); padding: 24px 32px; margin-top: 1px; display: flex; align-items: center; justify-content: space-between; }
+  footer span { font-size: 11px; color: var(--gray-600); letter-spacing: 0.08em; text-transform: uppercase; }
   @media (max-width: 600px) {
-    header { padding: 0 16px; }
-    .hero { padding: 28px 16px 24px; }
-    .filters { padding: 12px 16px; }
-    .grid { grid-template-columns: repeat(2, 1fr); }
-    nav { display: none; }
-    .modal-body { padding: 20px; }
+    header { padding: 0 16px; } .hero { padding: 28px 16px 24px; } .filters { padding: 12px 16px; }
+    .grid { grid-template-columns: repeat(2, 1fr); } nav { display: none; } .modal-body { padding: 20px; }
   }
 </style>
 </head>
 <body>
-
 <header>
   <a class="logo" href="#">
     <div>
       <div class="logo-text">Parches Metaleros</div>
-      <div class="logo-sub">Metal Underground Store · Santiago</div>
+      <div class="logo-sub">Metal Underground Store &middot; Santiago</div>
     </div>
   </a>
   <nav>
-    <a href="#catalogo">Catálogo</a>
+    <a href="#catalogo">Catalogo</a>
     <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="/cdn-cgi/l/email-protection#6f0c00011b0e0c1b002f1f0e1d0c070a1c020a1b0e030a1d001c410c03">Contacto</a>
+    <a href="mailto:contacto@parchesmetaleros.cl">Contacto</a>
   </nav>
 </header>
-
 <div class="hero">
-  <h1>CATÁLOGO<br><span>UNDERGROUND</span></h1>
-  <p>Parches · Poleras · CDs · Pines · Santiago, Chile</p>
+  <h1>CATALOGO<br><span>UNDERGROUND</span></h1>
+  <p>Parches &middot; Poleras &middot; CDs &middot; Pines &middot; Santiago, Chile</p>
 </div>
-
 <div class="filters" id="catalogo">
   <div class="search-wrap">
-    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-    </svg>
+    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="search" placeholder="Buscar producto o banda..." oninput="applyFilters()">
   </div>
-
-  <select id="filter-banda" onchange="applyFilters()">
-    <option value="">Todas las bandas</option>
-  </select>
-
-  <select id="filter-tipo" onchange="applyFilters()">
-    <option value="">Todos los tipos</option>
-  </select>
-
+  <select id="filter-banda" onchange="applyFilters()"><option value="">Todas las bandas</option></select>
+  <select id="filter-tipo" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
   <label class="filter-toggle">
     <input type="checkbox" id="hide-stock" onchange="applyFilters()" checked>
     Ocultar sin stock
   </label>
-
   <span class="results-count" id="count"></span>
 </div>
-
-<div class="grid-wrap">
-  <div class="loading" id="loading">
-    <div class="spinner"></div>
-    <span>Cargando catálogo...</span>
-  </div>
+<div>
+  <div class="loading" id="loading"><div class="spinner"></div><span>Cargando catalogo...</span></div>
   <div id="error" class="error" style="display:none"></div>
   <div class="grid" id="grid" style="display:none"></div>
 </div>
-
 <footer>
   <span>Parches Metaleros &copy; 2025</span>
   <span>Santiago, Chile</span>
 </footer>
-
-<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
   <div class="modal" id="modal-content">
     <button class="modal-close" onclick="closeModalDirect()">
-      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
     <div id="modal-img-wrap"></div>
     <div class="modal-body">
@@ -607,209 +144,178 @@
     </div>
   </div>
 </div>
+<script>
+var TOKEN = 'pat0mmFlFUObWnw4q.98b090f66370c8781e62abb376b52e5f8c71339ad4cf9312a9505be402c79f5e';
+var BASE_ID = 'appMgMlqoRZbOQSWF';
+var allProducts = [];
+var bandasMap = {};
+var tiposMap = {};
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const TOKEN = 'pat0mmFlFUObWnw4q.98b090f66370c8781e62abb376b52e5f8c71339ad4cf9312a9505be402c79f5e';
-  const BASE_ID = 'appMgMlqoRZbOQSWF';
-  const TABLE = 'Productos';
-
-  let allProducts = [];
-  let bandasMap = {};
-  let tiposMap = {};
-
-  async function fetchTable(name) {
-    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(name)}?pageSize=100`;
-    const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}` } });
-    if (!res.ok) throw new Error(`Error ${res.status}`);
-    const data = await res.json();
-    return data.records;
-  }
-
-  async function fetchProducts() {
-    const [productos, bandas, tipos] = await Promise.all([
-      fetchTable('Productos'),
-      fetchTable('Bandas'),
-      fetchTable('Tipos de artículo')
-    ]);
-    bandas.forEach(r => { bandasMap[r.id] = r.fields['Nombre banda'] || ''; });
-    tipos.forEach(r => { tiposMap[r.id] = r.fields['Nombre tipo'] || ''; });
-    return productos;
-  }
-
-  function formatPrice(val) {
-    if (!val && val !== 0) return '';
-    return '$' + Math.round(val).toLocaleString('es-CL');
-  }
-
-  function getBanda(fields) {
-    if (!fields['Banda']) return '';
-    if (Array.isArray(fields['Banda'])) {
-      return fields['Banda'].map(id => bandasMap[id] || id).join(', ');
-    }
-    return bandasMap[fields['Banda']] || fields['Banda'];
-  }
-
-  function getTipo(fields) {
-    if (!fields['Tipo artículo']) return '';
-    if (Array.isArray(fields['Tipo artículo'])) {
-      return fields['Tipo artículo'].map(id => tiposMap[id] || id).join(', ');
-    }
-    return tiposMap[fields['Tipo artículo']] || fields['Tipo artículo'];
-  }
-
-  function getImgUrl(fields) {
-    if (fields['Imagen'] && fields['Imagen'].length > 0) {
-      return fields['Imagen'][0].url;
-    }
-    return null;
-  }
-
-  function imgPlaceholder() {
-    return `<div class="card-img-placeholder">
-      <svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round">
-        <rect x="3" y="3" width="18" height="18" rx="2"/>
-        <path d="m3 15 5-5 4 4 3-3 6 6"/>
-        <circle cx="8.5" cy="8.5" r="1.5"/>
-      </svg>
-    </div>`;
-  }
-
-  function renderCard(record) {
-    const f = record.fields;
-    const banda = getBanda(f);
-    const tipo = getTipo(f);
-    const stock = f['Stock actual'] || 0;
-    const visible = f['Visible en catálogo'];
-    const imgUrl = getImgUrl(f);
-    const outOfStock = stock <= 0;
-
-    const div = document.createElement('div');
-    div.className = 'card' + (outOfStock ? ' out-of-stock' : '');
-    div.onclick = () => openModal(record);
-
-    const imgHtml = imgUrl
-      ? `<img src="${imgUrl}" alt="${f['Nombre artículo'] || ''}" loading="lazy">`
-      : imgPlaceholder();
-
-    div.innerHTML = `
-      <div class="card-img-wrap">${imgHtml}</div>
-      <div class="card-body">
-        <div class="card-band">${banda}</div>
-        <div class="card-name">${f['Nombre artículo'] || 'Sin nombre'}</div>
-        ${f['Atributos'] ? `<div class="card-attrs">${f['Atributos']}</div>` : ''}
-        <div class="card-footer">
-          <div class="card-price">${formatPrice(f['Precio venta'])}</div>
-          ${tipo ? `<div class="card-type">${tipo}</div>` : ''}
-        </div>
-      </div>`;
-    return div;
-  }
-
-  function openModal(record) {
-    const f = record.fields;
-    const banda = getBanda(f);
-    const tipo = getTipo(f);
-    const stock = f['Stock actual'] || 0;
-    const imgUrl = getImgUrl(f);
-
-    document.getElementById('modal-band').textContent = banda;
-    document.getElementById('modal-name').textContent = f['Nombre artículo'] || '';
-    document.getElementById('modal-price').textContent = formatPrice(f['Precio venta']);
-    document.getElementById('modal-type').textContent = tipo;
-    document.getElementById('modal-stock').textContent = stock > 0 ? `${stock} en stock` : 'Sin stock';
-    document.getElementById('modal-desc').textContent = f['Descripción'] || '';
-    document.getElementById('modal-attrs').textContent = f['Atributos'] || '';
-
-    const imgWrap = document.getElementById('modal-img-wrap');
-    imgWrap.innerHTML = imgUrl
-      ? `<img class="modal-img" src="${imgUrl}" alt="${f['Nombre artículo'] || ''}">`
-      : `<div class="modal-img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>`;
-
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal(e) {
-    if (e.target === document.getElementById('modal')) closeModalDirect();
-  }
-
-  function closeModalDirect() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModalDirect();
-  });
-
-  function populateFilters(records) {
-    const bandas = new Set();
-    const tipos = new Set();
-    records.forEach(r => {
-      const b = getBanda(r.fields);
-      const t = getTipo(r.fields);
-      if (b) b.split(', ').forEach(x => bandas.add(x.trim()));
-      if (t) t.split(', ').forEach(x => tipos.add(x.trim()));
-    });
-
-    const bandaSelect = document.getElementById('filter-banda');
-    [...bandas].sort().forEach(b => {
-      const o = document.createElement('option');
-      o.value = b; o.textContent = b;
-      bandaSelect.appendChild(o);
-    });
-
-    const tipoSelect = document.getElementById('filter-tipo');
-    [...tipos].sort().forEach(t => {
-      const o = document.createElement('option');
-      o.value = t; o.textContent = t;
-      tipoSelect.appendChild(o);
-    });
-  }
-
-  function applyFilters() {
-    const search = document.getElementById('search').value.toLowerCase().trim();
-    const banda = document.getElementById('filter-banda').value;
-    const tipo = document.getElementById('filter-tipo').value;
-    const hideStock = document.getElementById('hide-stock').checked;
-
-    let filtered = allProducts.filter(r => {
-      const f = r.fields;
-      if (!f['Visible en catálogo']) return false;
-      const stock = f['Stock actual'] || 0;
-      if (hideStock && stock <= 0) return false;
-
-      const nombre = (f['Nombre artículo'] || '').toLowerCase();
-      const bandaVal = getBanda(f).toLowerCase();
-      if (search && !nombre.includes(search) && !bandaVal.includes(search)) return false;
-      if (banda && !getBanda(f).includes(banda)) return false;
-      if (tipo && !getTipo(f).includes(tipo)) return false;
-      return true;
-    });
-
-    const grid = document.getElementById('grid');
-    grid.innerHTML = '';
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty"><p>No se encontraron productos</p></div>`;
+function fetchAirtable(table, callback) {
+  var url = 'https://api.airtable.com/v0/' + BASE_ID + '/' + encodeURIComponent(table) + '?pageSize=100';
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      callback(null, JSON.parse(xhr.responseText).records);
     } else {
-      filtered.forEach(r => grid.appendChild(renderCard(r)));
+      callback('Error ' + xhr.status + ': ' + xhr.responseText);
     }
+  };
+  xhr.onerror = function() { callback('Error de red'); };
+  xhr.send();
+}
 
-    const total = filtered.length;
-    document.getElementById('count').textContent = `${total} producto${total !== 1 ? 's' : ''}`;
+function loadAll() {
+  fetchAirtable('Bandas', function(err, bandas) {
+    if (err) { showError('Error cargando bandas: ' + err); return; }
+    bandas.forEach(function(r) {
+      bandasMap[r.id] = r.fields['Nombre banda'] || Object.values(r.fields)[0] || '';
+    });
+    fetchAirtable('Tipos de art\u00edculo', function(err2, tipos) {
+      if (err2) { showError('Error cargando tipos: ' + err2); return; }
+      tipos.forEach(function(r) {
+        tiposMap[r.id] = r.fields['Nombre tipo'] || Object.values(r.fields)[0] || '';
+      });
+      fetchAirtable('Productos', function(err3, productos) {
+        if (err3) { showError('Error cargando productos: ' + err3); return; }
+        allProducts = productos;
+        populateFilters(productos);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('grid').style.display = 'grid';
+        applyFilters();
+      });
+    });
+  });
+}
+
+function showError(msg) {
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('error').style.display = 'block';
+  document.getElementById('error').textContent = msg;
+}
+
+function getBanda(fields) {
+  if (!fields['Banda']) return '';
+  if (Array.isArray(fields['Banda'])) return fields['Banda'].map(function(id){ return bandasMap[id] || id; }).join(', ');
+  return bandasMap[fields['Banda']] || fields['Banda'];
+}
+
+function getTipo(fields) {
+  if (!fields['Tipo art\u00edculo']) return '';
+  if (Array.isArray(fields['Tipo art\u00edculo'])) return fields['Tipo art\u00edculo'].map(function(id){ return tiposMap[id] || id; }).join(', ');
+  return tiposMap[fields['Tipo art\u00edculo']] || fields['Tipo art\u00edculo'];
+}
+
+function getImgUrl(fields) {
+  if (fields['Imagen'] && fields['Imagen'].length > 0) return fields['Imagen'][0].url;
+  return null;
+}
+
+function formatPrice(val) {
+  if (!val && val !== 0) return '';
+  return '$' + Math.round(val).toLocaleString('es-CL');
+}
+
+function imgPlaceholder() {
+  return '<div class="card-img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
+}
+
+function renderCard(record) {
+  var f = record.fields;
+  var banda = getBanda(f);
+  var tipo = getTipo(f);
+  var stock = f['Stock actual'] || 0;
+  var imgUrl = getImgUrl(f);
+  var outOfStock = stock <= 0;
+  var div = document.createElement('div');
+  div.className = 'card' + (outOfStock ? ' out-of-stock' : '');
+  div.onclick = function() { openModal(record); };
+  var imgHtml = imgUrl ? '<img src="' + imgUrl + '" alt="' + (f['Nombre art\u00edculo'] || '') + '" loading="lazy">' : imgPlaceholder();
+  div.innerHTML = '<div class="card-img-wrap">' + imgHtml + '</div>' +
+    '<div class="card-body">' +
+    '<div class="card-band">' + banda + '</div>' +
+    '<div class="card-name">' + (f['Nombre art\u00edculo'] || 'Sin nombre') + '</div>' +
+    (f['Atributos'] ? '<div class="card-attrs">' + f['Atributos'] + '</div>' : '') +
+    '<div class="card-footer">' +
+    '<div class="card-price">' + formatPrice(f['Precio venta']) + '</div>' +
+    (tipo ? '<div class="card-type">' + tipo + '</div>' : '') +
+    '</div></div>';
+  return div;
+}
+
+function openModal(record) {
+  var f = record.fields;
+  var banda = getBanda(f);
+  var tipo = getTipo(f);
+  var stock = f['Stock actual'] || 0;
+  var imgUrl = getImgUrl(f);
+  document.getElementById('modal-band').textContent = banda;
+  document.getElementById('modal-name').textContent = f['Nombre art\u00edculo'] || '';
+  document.getElementById('modal-price').textContent = formatPrice(f['Precio venta']);
+  document.getElementById('modal-type').textContent = tipo;
+  document.getElementById('modal-stock').textContent = stock > 0 ? stock + ' en stock' : 'Sin stock';
+  document.getElementById('modal-desc').textContent = f['Descripci\u00f3n'] || '';
+  document.getElementById('modal-attrs').textContent = f['Atributos'] || '';
+  var imgWrap = document.getElementById('modal-img-wrap');
+  imgWrap.innerHTML = imgUrl ? '<img class="modal-img" src="' + imgUrl + '" alt="">' : '<div class="modal-img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
+  document.getElementById('modal').className = 'modal-overlay open';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal').className = 'modal-overlay'; document.body.style.overflow = ''; }
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModalDirect(); });
+
+function populateFilters(records) {
+  var bandas = {};
+  var tipos = {};
+  records.forEach(function(r) {
+    var b = getBanda(r.fields);
+    var t = getTipo(r.fields);
+    if (b) b.split(', ').forEach(function(x) { bandas[x.trim()] = 1; });
+    if (t) t.split(', ').forEach(function(x) { tipos[x.trim()] = 1; });
+  });
+  var bandaSelect = document.getElementById('filter-banda');
+  Object.keys(bandas).sort().forEach(function(b) {
+    var o = document.createElement('option'); o.value = b; o.textContent = b; bandaSelect.appendChild(o);
+  });
+  var tipoSelect = document.getElementById('filter-tipo');
+  Object.keys(tipos).sort().forEach(function(t) {
+    var o = document.createElement('option'); o.value = t; o.textContent = t; tipoSelect.appendChild(o);
+  });
+}
+
+function applyFilters() {
+  var search = document.getElementById('search').value.toLowerCase().trim();
+  var banda = document.getElementById('filter-banda').value;
+  var tipo = document.getElementById('filter-tipo').value;
+  var hideStock = document.getElementById('hide-stock').checked;
+  var filtered = allProducts.filter(function(r) {
+    var f = r.fields;
+    if (!f['Visible en cat\u00e1logo']) return false;
+    var stock = f['Stock actual'] || 0;
+    if (hideStock && stock <= 0) return false;
+    var nombre = (f['Nombre art\u00edculo'] || '').toLowerCase();
+    var bandaVal = getBanda(f).toLowerCase();
+    if (search && !nombre.includes(search) && !bandaVal.includes(search)) return false;
+    if (banda && !getBanda(f).includes(banda)) return false;
+    if (tipo && !getTipo(f).includes(tipo)) return false;
+    return true;
+  });
+  var grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty"><p>No se encontraron productos</p></div>';
+  } else {
+    filtered.forEach(function(r) { grid.appendChild(renderCard(r)); });
   }
+  var total = filtered.length;
+  document.getElementById('count').textContent = total + ' producto' + (total !== 1 ? 's' : '');
+}
 
-  async function init() {
-    try {
-      const records = await fetchProducts();
-      allProducts = records;
-
-      populateFilters(records);
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('grid').style.display = 'grid';
-      applyFilters();
-    } catch (err) {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      document.getElementByI
+loadAll();
+</script>
+</body>
+</html>
