@@ -540,7 +540,7 @@
   <nav>
     <a href="#catalogo">Catálogo</a>
     <a href="https://instagram.com" target="_blank">Instagram</a>
-    <a href="mailto:contacto@parchesmetaleros.cl">Contacto</a>
+    <a href="/cdn-cgi/l/email-protection#6f0c00011b0e0c1b002f1f0e1d0c070a1c020a1b0e030a1d001c410c03">Contacto</a>
   </nav>
 </header>
 
@@ -608,21 +608,32 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const TOKEN = 'pat0mmFlFUObWnw4q.98b090f66370c8781e62abb376b52e5f8c71339ad4cf9312a9505be402c79f5e';
   const BASE_ID = 'appMgMlqoRZbOQSWF';
   const TABLE = 'Productos';
 
   let allProducts = [];
+  let bandasMap = {};
+  let tiposMap = {};
 
-  async function fetchProducts() {
-    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(TABLE)}?pageSize=100`;
-    const res = await fetch(url, {
-      headers: { Authorization: `Bearer ${TOKEN}` }
-    });
+  async function fetchTable(name) {
+    const url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(name)}?pageSize=100`;
+    const res = await fetch(url, { headers: { Authorization: `Bearer ${TOKEN}` } });
     if (!res.ok) throw new Error(`Error ${res.status}`);
     const data = await res.json();
     return data.records;
+  }
+
+  async function fetchProducts() {
+    const [productos, bandas, tipos] = await Promise.all([
+      fetchTable('Productos'),
+      fetchTable('Bandas'),
+      fetchTable('Tipos de artículo')
+    ]);
+    bandas.forEach(r => { bandasMap[r.id] = r.fields['Nombre banda'] || ''; });
+    tipos.forEach(r => { tiposMap[r.id] = r.fields['Nombre tipo'] || ''; });
+    return productos;
   }
 
   function formatPrice(val) {
@@ -632,14 +643,18 @@
 
   function getBanda(fields) {
     if (!fields['Banda']) return '';
-    if (Array.isArray(fields['Banda'])) return fields['Banda'].join(', ');
-    return fields['Banda'];
+    if (Array.isArray(fields['Banda'])) {
+      return fields['Banda'].map(id => bandasMap[id] || id).join(', ');
+    }
+    return bandasMap[fields['Banda']] || fields['Banda'];
   }
 
   function getTipo(fields) {
     if (!fields['Tipo artículo']) return '';
-    if (Array.isArray(fields['Tipo artículo'])) return fields['Tipo artículo'].join(', ');
-    return fields['Tipo artículo'];
+    if (Array.isArray(fields['Tipo artículo'])) {
+      return fields['Tipo artículo'].map(id => tiposMap[id] || id).join(', ');
+    }
+    return tiposMap[fields['Tipo artículo']] || fields['Tipo artículo'];
   }
 
   function getImgUrl(fields) {
@@ -789,6 +804,7 @@
     try {
       const records = await fetchProducts();
       allProducts = records;
+
       populateFilters(records);
       document.getElementById('loading').style.display = 'none';
       document.getElementById('grid').style.display = 'grid';
@@ -796,12 +812,4 @@
     } catch (err) {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('error').style.display = 'block';
-      document.getElementById('error').textContent = 'Error al cargar el catálogo. Verifica la configuración.';
-      console.error(err);
-    }
-  }
-
-  init();
-</script>
-</body>
-</html>
+      document.getElementByI
