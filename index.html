@@ -16,8 +16,8 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: var(--font-body); background: var(--white); color: var(--black); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-  header { background: var(--black); padding: 0 32px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1a1a1a; }
-  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  header { background: var(--black); padding: 0 32px; height: 80px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1a1a1a; }
+  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; } .logo img { height: 56px; width: auto; filter: invert(1); object-fit: contain; }
   .logo-text { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 0.06em; line-height: 1; }
   .logo-sub { font-size: 9px; color: var(--gray-400); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px; }
   nav { display: flex; gap: 28px; align-items: center; }
@@ -27,7 +27,7 @@
   .hero h1 { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); color: var(--white); letter-spacing: 0.04em; line-height: 0.92; margin-bottom: 12px; }
   .hero h1 span { color: var(--red); }
   .hero p { font-size: 13px; color: var(--gray-400); letter-spacing: 0.08em; text-transform: uppercase; }
-  .filters { padding: 16px 32px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--white); position: sticky; top: 64px; z-index: 90; }
+  .filters { padding: 16px 32px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--white); position: sticky; top: 80px; z-index: 90; }
   .search-wrap { position: relative; flex: 1; min-width: 180px; max-width: 280px; }
   .search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--gray-400); }
   input[type="search"] { width: 100%; height: 34px; border: 1px solid var(--gray-200); border-radius: 4px; padding: 0 12px 0 32px; font-size: 13px; font-family: var(--font-body); color: var(--black); background: var(--gray-100); outline: none; transition: border-color 0.2s; }
@@ -88,10 +88,7 @@
 <body>
 <header>
   <a class="logo" href="#">
-    <div>
-      <div class="logo-text">Parches Metaleros</div>
-      <div class="logo-sub">Metal Underground Store &middot; Santiago</div>
-    </div>
+    <img src="Logo500x500.png" alt="Parches Metaleros">
   </a>
   <nav>
     <a href="#catalogo">Catalogo</a>
@@ -122,7 +119,7 @@
   <div class="grid" id="grid" style="display:none"></div>
 </div>
 <footer>
-  <span>Parches Metaleros &copy; 2026</span>
+  <span>Parches Metaleros &copy; 2025</span>
   <span>Santiago, Chile</span>
 </footer>
 <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -144,7 +141,7 @@
     </div>
   </div>
 </div>
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var TOKEN = 'pat0mmFlFUObWnw4q.98b090f66370c8781e62abb376b52e5f8c71339ad4cf9312a9505be402c79f5e';
 var BASE_ID = 'appMgMlqoRZbOQSWF';
 var allProducts = [];
@@ -311,11 +308,4 @@ function applyFilters() {
   } else {
     filtered.forEach(function(r) { grid.appendChild(renderCard(r)); });
   }
-  var total = filtered.length;
-  document.getElementById('count').textContent = total + ' producto' + (total !== 1 ? 's' : '');
-}
-
-loadAll();
-</script>
-</body>
-</html>
+  var tot
