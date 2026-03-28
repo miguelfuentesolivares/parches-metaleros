@@ -3,86 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parches Metaleros — Metal Underground Store</title>
+<title>Parches Metaleros</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --black: #0a0a0a; --white: #ffffff; --gray-100: #f5f5f5;
-    --gray-200: #e8e8e8; --gray-400: #aaaaaa; --gray-600: #666666;
-    --red: #cc0000; --font-display: 'Bebas Neue', sans-serif; --font-body: 'Inter', sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--font-body); background: var(--white); color: var(--black); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-  header { background: var(--black); padding: 0 32px; height: 80px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1a1a1a; }
-  .logo { display: flex; align-items: center; gap: 14px; text-decoration: none; } .logo img { height: 56px; width: auto; filter: invert(1); object-fit: contain; }
-  .logo-text { font-family: var(--font-display); font-size: 22px; color: var(--white); letter-spacing: 0.06em; line-height: 1; }
-  .logo-sub { font-size: 9px; color: var(--gray-400); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px; }
-  nav { display: flex; gap: 28px; align-items: center; }
-  nav a { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-400); text-decoration: none; transition: color 0.2s; }
-  nav a:hover { color: var(--white); }
-  .hero { background: var(--black); padding: 40px 32px 36px; border-bottom: 1px solid #1a1a1a; }
-  .hero h1 { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); color: var(--white); letter-spacing: 0.04em; line-height: 0.92; margin-bottom: 12px; }
-  .hero h1 span { color: var(--red); }
-  .hero p { font-size: 13px; color: var(--gray-400); letter-spacing: 0.08em; text-transform: uppercase; }
-  .filters { padding: 16px 32px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--white); position: sticky; top: 80px; z-index: 90; }
-  .search-wrap { position: relative; flex: 1; min-width: 180px; max-width: 280px; }
-  .search-wrap svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; stroke: var(--gray-400); }
-  input[type="search"] { width: 100%; height: 34px; border: 1px solid var(--gray-200); border-radius: 4px; padding: 0 12px 0 32px; font-size: 13px; font-family: var(--font-body); color: var(--black); background: var(--gray-100); outline: none; transition: border-color 0.2s; }
-  input[type="search"]:focus { border-color: var(--black); background: var(--white); }
-  select { height: 34px; border: 1px solid var(--gray-200); border-radius: 4px; padding: 0 28px 0 10px; font-size: 12px; font-family: var(--font-body); color: var(--black); background: var(--gray-100); outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; transition: border-color 0.2s; }
-  select:focus { border-color: var(--black); }
-  .filter-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-600); cursor: pointer; user-select: none; padding: 0 4px; }
-  .filter-toggle input { cursor: pointer; accent-color: var(--black); }
-  .results-count { margin-left: auto; font-size: 11px; color: var(--gray-400); letter-spacing: 0.06em; white-space: nowrap; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--gray-200); }
-  .card { background: var(--white); cursor: pointer; transition: background 0.15s; position: relative; overflow: hidden; }
-  .card:hover { background: var(--gray-100); }
-  .card-img-wrap { aspect-ratio: 1; overflow: hidden; background: var(--gray-100); position: relative; }
-  .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
-  .card:hover img { transform: scale(1.04); }
-  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: var(--gray-100); }
-  .card-img-placeholder svg { width: 40px; height: 40px; stroke: var(--gray-200); fill: none; }
-  .card-body { padding: 12px 14px 16px; border-top: 1px solid var(--gray-200); }
-  .card-band { font-size: 10px; color: var(--gray-400); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; }
-  .card-name { font-size: 14px; font-weight: 500; color: var(--black); margin-bottom: 10px; line-height: 1.3; }
-  .card-footer { display: flex; align-items: center; justify-content: space-between; }
-  .card-price { font-family: var(--font-display); font-size: 20px; color: var(--black); letter-spacing: 0.02em; }
-  .card-type { font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); padding: 3px 8px; border: 1px solid var(--gray-200); border-radius: 2px; }
-  .card-attrs { font-size: 11px; color: var(--gray-400); margin-top: 4px; line-height: 1.4; }
-  .card.out-of-stock .card-img-wrap::after { content: 'SIN STOCK'; position: absolute; top: 10px; left: 10px; background: var(--black); color: var(--white); font-size: 9px; letter-spacing: 0.14em; padding: 3px 7px; font-family: var(--font-body); font-weight: 500; }
-  .card.out-of-stock { opacity: 0.5; }
-  .empty { grid-column: 1 / -1; padding: 80px 32px; text-align: center; background: var(--white); }
-  .empty p { font-size: 13px; color: var(--gray-400); letter-spacing: 0.08em; text-transform: uppercase; }
-  .loading { display: flex; align-items: center; justify-content: center; padding: 80px 32px; gap: 8px; font-size: 12px; color: var(--gray-400); letter-spacing: 0.1em; text-transform: uppercase; }
-  .spinner { width: 16px; height: 16px; border: 2px solid var(--gray-200); border-top-color: var(--black); border-radius: 50%; animation: spin 0.7s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .error { padding: 40px 32px; text-align: center; font-size: 13px; color: var(--red); letter-spacing: 0.06em; }
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
-  .modal-overlay.open { display: flex; }
-  .modal { background: var(--white); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-  .modal-img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; background: var(--gray-100); }
-  .modal-img-placeholder { width: 100%; aspect-ratio: 1; background: var(--gray-100); display: flex; align-items: center; justify-content: center; }
-  .modal-img-placeholder svg { width: 64px; height: 64px; stroke: var(--gray-200); fill: none; }
-  .modal-body { padding: 24px 28px 32px; }
-  .modal-band { font-size: 11px; color: var(--gray-400); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; }
-  .modal-name { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 16px; }
-  .modal-meta { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
-  .modal-price { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.02em; }
-  .modal-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-600); padding: 4px 10px; border: 1px solid var(--gray-200); border-radius: 2px; }
-  .modal-stock { font-size: 11px; color: var(--gray-400); letter-spacing: 0.06em; margin-left: auto; }
-  .modal-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 12px; }
-  .modal-attrs { font-size: 12px; color: var(--gray-400); line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--gray-200); }
-  .modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; background: rgba(0,0,0,0.6); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 2px; z-index: 10; }
-  .modal-close svg { width: 14px; height: 14px; stroke: white; }
-  footer { background: var(--black); padding: 24px 32px; margin-top: 1px; display: flex; align-items: center; justify-content: space-between; }
-  footer span { font-size: 11px; color: var(--gray-600); letter-spacing: 0.08em; text-transform: uppercase; }
-  @media (max-width: 600px) {
-    header { padding: 0 16px; } .hero { padding: 28px 16px 24px; } .filters { padding: 12px 16px; }
-    .grid { grid-template-columns: repeat(2, 1fr); } nav { display: none; } .modal-body { padding: 20px; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#ffffff;--g1:#f5f5f5;--g2:#e8e8e8;--g4:#aaaaaa;--g6:#666666;--red:#cc0000;--fd:'Bebas Neue',sans-serif;--fb:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--white);color:var(--black);min-height:100vh;-webkit-font-smoothing:antialiased}
+header{background:var(--black);padding:0 32px;height:80px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #1a1a1a}
+.logo{display:flex;align-items:center;text-decoration:none}
+.logo img{height:58px;width:auto;filter:invert(1);object-fit:contain}
+nav{display:flex;gap:28px;align-items:center}
+nav a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g4);text-decoration:none;transition:color .2s}
+nav a:hover{color:var(--white)}
+.hero{background:var(--black);padding:40px 32px 36px;border-bottom:1px solid #1a1a1a}
+.hero h1{font-family:var(--fd);font-size:clamp(48px,8vw,96px);color:var(--white);letter-spacing:.04em;line-height:.92;margin-bottom:12px}
+.hero h1 span{color:var(--red)}
+.hero p{font-size:13px;color:var(--g4);letter-spacing:.08em;text-transform:uppercase}
+.filters{padding:16px 32px;border-bottom:1px solid var(--g2);display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--white);position:sticky;top:80px;z-index:90}
+.sw{position:relative;flex:1;min-width:180px;max-width:280px}
+.sw svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--g4)}
+input[type=search]{width:100%;height:34px;border:1px solid var(--g2);border-radius:4px;padding:0 12px 0 32px;font-size:13px;font-family:var(--fb);color:var(--black);background:var(--g1);outline:none;transition:border-color .2s}
+input[type=search]:focus{border-color:var(--black);background:var(--white)}
+select{height:34px;border:1px solid var(--g2);border-radius:4px;padding:0 28px 0 10px;font-size:12px;font-family:var(--fb);color:var(--black);background:var(--g1);outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23aaa' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .2s}
+select:focus{border-color:var(--black)}
+.ft{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--g6);cursor:pointer;user-select:none;padding:0 4px}
+.ft input{cursor:pointer;accent-color:var(--black)}
+.rc{margin-left:auto;font-size:11px;color:var(--g4);letter-spacing:.06em;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--g2)}
+.card{background:var(--white);cursor:pointer;transition:background .15s;position:relative;overflow:hidden}
+.card:hover{background:var(--g1)}
+.ciw{aspect-ratio:1;overflow:hidden;background:var(--g1);position:relative}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;display:block}
+.card:hover img{transform:scale(1.04)}
+.cip{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--g1)}
+.cip svg{width:40px;height:40px;stroke:var(--g2);fill:none}
+.cb{padding:12px 14px 16px;border-top:1px solid var(--g2)}
+.cband{font-size:10px;color:var(--g4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.cname{font-size:14px;font-weight:500;color:var(--black);margin-bottom:10px;line-height:1.3}
+.cf{display:flex;align-items:center;justify-content:space-between}
+.cprice{font-family:var(--fd);font-size:20px;color:var(--black);letter-spacing:.02em}
+.ctype{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--g6);padding:3px 8px;border:1px solid var(--g2);border-radius:2px}
+.cattrs{font-size:11px;color:var(--g4);margin-top:4px;line-height:1.4}
+.card.oos .ciw::after{content:'SIN STOCK';position:absolute;top:10px;left:10px;background:var(--black);color:var(--white);font-size:9px;letter-spacing:.14em;padding:3px 7px;font-weight:500}
+.card.oos{opacity:.5}
+.empty{grid-column:1/-1;padding:80px 32px;text-align:center;background:var(--white)}
+.empty p{font-size:13px;color:var(--g4);letter-spacing:.08em;text-transform:uppercase}
+.loading{display:flex;align-items:center;justify-content:center;padding:80px 32px;gap:8px;font-size:12px;color:var(--g4);letter-spacing:.1em;text-transform:uppercase}
+.spinner{width:16px;height:16px;border:2px solid var(--g2);border-top-color:var(--black);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{padding:40px 32px;text-align:center;font-size:13px;color:var(--red);letter-spacing:.06em}
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:center;justify-content:center;padding:20px}
+.mo.open{display:flex}
+.modal{background:var(--white);max-width:600px;width:100%;max-height:90vh;overflow-y:auto;position:relative}
+.mimg{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:var(--g1)}
+.miph{width:100%;aspect-ratio:1;background:var(--g1);display:flex;align-items:center;justify-content:center}
+.miph svg{width:64px;height:64px;stroke:var(--g2);fill:none}
+.mb{padding:24px 28px 32px}
+.mband{font-size:11px;color:var(--g4);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.mname{font-family:var(--fd);font-size:36px;letter-spacing:.04em;line-height:1;margin-bottom:16px}
+.mmeta{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap}
+.mprice{font-family:var(--fd);font-size:28px;letter-spacing:.02em}
+.mtype{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g6);padding:4px 10px;border:1px solid var(--g2);border-radius:2px}
+.mstock{font-size:11px;color:var(--g4);letter-spacing:.06em;margin-left:auto}
+.mdesc{font-size:14px;color:var(--g6);line-height:1.7;margin-bottom:12px}
+.mattrs{font-size:12px;color:var(--g4);line-height:1.6;padding-top:12px;border-top:1px solid var(--g2)}
+.mc{position:absolute;top:14px;right:14px;width:32px;height:32px;background:rgba(0,0,0,.6);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px;z-index:10}
+.mc svg{width:14px;height:14px;stroke:white}
+footer{background:var(--black);padding:24px 32px;margin-top:1px;display:flex;align-items:center;justify-content:space-between}
+footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:600px){header{padding:0 16px}.hero{padding:28px 16px 24px}.filters{padding:12px 16px}.grid{grid-template-columns:repeat(2,1fr)}nav{display:none}.mb{padding:20px}}
 </style>
 </head>
 <body>
@@ -93,7 +85,6 @@
   <nav>
     <a href="#catalogo">Catalogo</a>
     <a href="https://instagram.com/parchesmetaleros" target="_blank">Instagram</a>
-    
   </nav>
 </header>
 <div class="hero">
@@ -101,211 +92,164 @@
   <p>Parches &middot; Poleras &middot; CDs &middot; Pines &middot; Santiago, Chile</p>
 </div>
 <div class="filters" id="catalogo">
-  <div class="search-wrap">
+  <div class="sw">
     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="search" placeholder="Buscar producto o banda..." oninput="applyFilters()">
   </div>
-  <select id="filter-banda" onchange="applyFilters()"><option value="">Todas las bandas</option></select>
-  <select id="filter-tipo" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
-  <label class="filter-toggle">
-    <input type="checkbox" id="hide-stock" onchange="applyFilters()" checked>
+  <select id="fb" onchange="applyFilters()"><option value="">Todas las bandas</option></select>
+  <select id="ft" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
+  <label class="ft">
+    <input type="checkbox" id="hs" onchange="applyFilters()" checked>
     Ocultar sin stock
   </label>
-  <span class="results-count" id="count"></span>
+  <span class="rc" id="count"></span>
 </div>
 <div>
   <div class="loading" id="loading"><div class="spinner"></div><span>Cargando catalogo...</span></div>
-  <div id="error" class="error" style="display:none"></div>
+  <div id="error" class="err" style="display:none"></div>
   <div class="grid" id="grid" style="display:none"></div>
 </div>
 <footer>
-  <span>Parches Metaleros &copy; 2026</span>
+  <span>Parches Metaleros &copy; 2025</span>
   <span>Santiago, Chile</span>
 </footer>
-<div class="modal-overlay" id="modal" onclick="closeModal(event)">
-  <div class="modal" id="modal-content">
-    <button class="modal-close" onclick="closeModalDirect()">
-      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-    <div id="modal-img-wrap"></div>
-    <div class="modal-body">
-      <div class="modal-band" id="modal-band"></div>
-      <div class="modal-name" id="modal-name"></div>
-      <div class="modal-meta">
-        <div class="modal-price" id="modal-price"></div>
-        <div class="modal-type" id="modal-type"></div>
-        <div class="modal-stock" id="modal-stock"></div>
+<div class="mo" id="modal" onclick="cmo(event)">
+  <div class="modal">
+    <button class="mc" onclick="cmd()"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div id="miw"></div>
+    <div class="mb">
+      <div class="mband" id="mband"></div>
+      <div class="mname" id="mname"></div>
+      <div class="mmeta">
+        <div class="mprice" id="mprice"></div>
+        <div class="mtype" id="mtype"></div>
+        <div class="mstock" id="mstock"></div>
       </div>
-      <div class="modal-desc" id="modal-desc"></div>
-      <div class="modal-attrs" id="modal-attrs"></div>
+      <div class="mdesc" id="mdesc"></div>
+      <div class="mattrs" id="mattrs"></div>
     </div>
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-var TOKEN = 'pat0mmFlFUObWnw4q.98b090f66370c8781e62abb376b52e5f8c71339ad4cf9312a9505be402c79f5e';
-var BASE_ID = 'appMgMlqoRZbOQSWF';
-var allProducts = [];
-var bandasMap = {};
-var tiposMap = {};
-
-function fetchAirtable(table, callback) {
-  var url = 'https://api.airtable.com/v0/' + BASE_ID + '/' + encodeURIComponent(table) + '?pageSize=100';
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
-  xhr.setRequestHeader('Authorization', 'Bearer ' + TOKEN);
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      callback(null, JSON.parse(xhr.responseText).records);
-    } else {
-      callback('Error ' + xhr.status + ': ' + xhr.responseText);
-    }
+<script>
+var TK='TU_TOKEN_AQUI';
+var BID='TU_BASE_ID_AQUI';
+var AP=[];
+var BM={};
+var TM={};
+function fa(t,cb){
+  var u='https://api.airtable.com/v0/'+BID+'/'+encodeURIComponent(t)+'?pageSize=100';
+  var x=new XMLHttpRequest();
+  x.open('GET',u,true);
+  x.setRequestHeader('Authorization','Bearer '+TK);
+  x.onload=function(){
+    if(x.status===200){cb(null,JSON.parse(x.responseText).records);}
+    else{cb('Error '+x.status);}
   };
-  xhr.onerror = function() { callback('Error de red'); };
-  xhr.send();
+  x.onerror=function(){cb('Error de red');};
+  x.send();
 }
-
-function loadAll() {
-  fetchAirtable('Bandas', function(err, bandas) {
-    if (err) { showError('Error cargando bandas: ' + err); return; }
-    bandas.forEach(function(r) {
-      bandasMap[r.id] = r.fields['Nombre banda'] || Object.values(r.fields)[0] || '';
-    });
-    fetchAirtable('Tipos de art\u00edculo', function(err2, tipos) {
-      if (err2) { showError('Error cargando tipos: ' + err2); return; }
-      tipos.forEach(function(r) {
-        tiposMap[r.id] = r.fields['Nombre tipo'] || Object.values(r.fields)[0] || '';
-      });
-      fetchAirtable('Productos', function(err3, productos) {
-        if (err3) { showError('Error cargando productos: ' + err3); return; }
-        allProducts = productos;
-        populateFilters(productos);
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('grid').style.display = 'grid';
+function init(){
+  fa('Bandas',function(e,r){
+    if(e){serr(e);return;}
+    r.forEach(function(x){BM[x.id]=x.fields['Nombre banda']||Object.values(x.fields)[0]||'';});
+    fa('Tipos de art\u00edculo',function(e2,r2){
+      if(e2){serr(e2);return;}
+      r2.forEach(function(x){TM[x.id]=x.fields['Nombre tipo']||Object.values(x.fields)[0]||'';});
+      fa('Productos',function(e3,r3){
+        if(e3){serr(e3);return;}
+        AP=r3;
+        pf(r3);
+        document.getElementById('loading').style.display='none';
+        document.getElementById('grid').style.display='grid';
         applyFilters();
       });
     });
   });
 }
-
-function showError(msg) {
-  document.getElementById('loading').style.display = 'none';
-  document.getElementById('error').style.display = 'block';
-  document.getElementById('error').textContent = msg;
+function serr(m){
+  document.getElementById('loading').style.display='none';
+  var el=document.getElementById('error');
+  el.style.display='block';
+  el.textContent='Error: '+m;
 }
-
-function getBanda(fields) {
-  if (!fields['Banda']) return '';
-  if (Array.isArray(fields['Banda'])) return fields['Banda'].map(function(id){ return bandasMap[id] || id; }).join(', ');
-  return bandasMap[fields['Banda']] || fields['Banda'];
+function gb(f){
+  if(!f['Banda'])return'';
+  if(Array.isArray(f['Banda']))return f['Banda'].map(function(i){return BM[i]||i;}).join(', ');
+  return BM[f['Banda']]||f['Banda'];
 }
-
-function getTipo(fields) {
-  if (!fields['Tipo art\u00edculo']) return '';
-  if (Array.isArray(fields['Tipo art\u00edculo'])) return fields['Tipo art\u00edculo'].map(function(id){ return tiposMap[id] || id; }).join(', ');
-  return tiposMap[fields['Tipo art\u00edculo']] || fields['Tipo art\u00edculo'];
+function gt(f){
+  if(!f['Tipo art\u00edculo'])return'';
+  if(Array.isArray(f['Tipo art\u00edculo']))return f['Tipo art\u00edculo'].map(function(i){return TM[i]||i;}).join(', ');
+  return TM[f['Tipo art\u00edculo']]||f['Tipo art\u00edculo'];
 }
-
-function getImgUrl(fields) {
-  if (fields['Imagen'] && fields['Imagen'].length > 0) return fields['Imagen'][0].url;
-  return null;
+function gi(f){return f['Imagen']&&f['Imagen'].length>0?f['Imagen'][0].url:null;}
+function fp(v){if(!v&&v!==0)return'';return'$'+Math.round(v).toLocaleString('es-CL');}
+function ph(){return'<div class="cip"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';}
+function rc(r){
+  var f=r.fields;
+  var b=gb(f),t=gt(f),s=f['Stock actual']||0,img=gi(f);
+  var d=document.createElement('div');
+  d.className='card'+(s<=0?' oos':'');
+  d.onclick=function(){om(r);};
+  d.innerHTML='<div class="ciw">'+(img?'<img src="'+img+'" alt="'+(f['Nombre art\u00edculo']||'')+'" loading="lazy">':ph())+'</div>'+
+    '<div class="cb"><div class="cband">'+b+'</div>'+
+    '<div class="cname">'+(f['Nombre art\u00edculo']||'Sin nombre')+'</div>'+
+    (f['Atributos']?'<div class="cattrs">'+f['Atributos']+'</div>':'')+
+    '<div class="cf"><div class="cprice">'+fp(f['Precio venta'])+'</div>'+(t?'<div class="ctype">'+t+'</div>':'')+'</div></div>';
+  return d;
 }
-
-function formatPrice(val) {
-  if (!val && val !== 0) return '';
-  return '$' + Math.round(val).toLocaleString('es-CL');
+function om(r){
+  var f=r.fields,b=gb(f),t=gt(f),s=f['Stock actual']||0,img=gi(f);
+  document.getElementById('mband').textContent=b;
+  document.getElementById('mname').textContent=f['Nombre art\u00edculo']||'';
+  document.getElementById('mprice').textContent=fp(f['Precio venta']);
+  document.getElementById('mtype').textContent=t;
+  document.getElementById('mstock').textContent=s>0?s+' en stock':'Sin stock';
+  document.getElementById('mdesc').textContent=f['Descripci\u00f3n']||'';
+  document.getElementById('mattrs').textContent=f['Atributos']||'';
+  document.getElementById('miw').innerHTML=img?'<img class="mimg" src="'+img+'" alt="">':'<div class="miph"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
+  document.getElementById('modal').className='mo open';
+  document.body.style.overflow='hidden';
 }
-
-function imgPlaceholder() {
-  return '<div class="card-img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
-}
-
-function renderCard(record) {
-  var f = record.fields;
-  var banda = getBanda(f);
-  var tipo = getTipo(f);
-  var stock = f['Stock actual'] || 0;
-  var imgUrl = getImgUrl(f);
-  var outOfStock = stock <= 0;
-  var div = document.createElement('div');
-  div.className = 'card' + (outOfStock ? ' out-of-stock' : '');
-  div.onclick = function() { openModal(record); };
-  var imgHtml = imgUrl ? '<img src="' + imgUrl + '" alt="' + (f['Nombre art\u00edculo'] || '') + '" loading="lazy">' : imgPlaceholder();
-  div.innerHTML = '<div class="card-img-wrap">' + imgHtml + '</div>' +
-    '<div class="card-body">' +
-    '<div class="card-band">' + banda + '</div>' +
-    '<div class="card-name">' + (f['Nombre art\u00edculo'] || 'Sin nombre') + '</div>' +
-    (f['Atributos'] ? '<div class="card-attrs">' + f['Atributos'] + '</div>' : '') +
-    '<div class="card-footer">' +
-    '<div class="card-price">' + formatPrice(f['Precio venta']) + '</div>' +
-    (tipo ? '<div class="card-type">' + tipo + '</div>' : '') +
-    '</div></div>';
-  return div;
-}
-
-function openModal(record) {
-  var f = record.fields;
-  var banda = getBanda(f);
-  var tipo = getTipo(f);
-  var stock = f['Stock actual'] || 0;
-  var imgUrl = getImgUrl(f);
-  document.getElementById('modal-band').textContent = banda;
-  document.getElementById('modal-name').textContent = f['Nombre art\u00edculo'] || '';
-  document.getElementById('modal-price').textContent = formatPrice(f['Precio venta']);
-  document.getElementById('modal-type').textContent = tipo;
-  document.getElementById('modal-stock').textContent = stock > 0 ? stock + ' en stock' : 'Sin stock';
-  document.getElementById('modal-desc').textContent = f['Descripci\u00f3n'] || '';
-  document.getElementById('modal-attrs').textContent = f['Atributos'] || '';
-  var imgWrap = document.getElementById('modal-img-wrap');
-  imgWrap.innerHTML = imgUrl ? '<img class="modal-img" src="' + imgUrl + '" alt="">' : '<div class="modal-img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>';
-  document.getElementById('modal').className = 'modal-overlay open';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal(e) { if (e.target === document.getElementById('modal')) closeModalDirect(); }
-function closeModalDirect() { document.getElementById('modal').className = 'modal-overlay'; document.body.style.overflow = ''; }
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModalDirect(); });
-
-function populateFilters(records) {
-  var bandas = {};
-  var tipos = {};
-  records.forEach(function(r) {
-    var b = getBanda(r.fields);
-    var t = getTipo(r.fields);
-    if (b) b.split(', ').forEach(function(x) { bandas[x.trim()] = 1; });
-    if (t) t.split(', ').forEach(function(x) { tipos[x.trim()] = 1; });
+function cmo(e){if(e.target===document.getElementById('modal'))cmd();}
+function cmd(){document.getElementById('modal').className='mo';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cmd();});
+function pf(records){
+  var b={},t={};
+  records.forEach(function(r){
+    var bv=gb(r.fields),tv=gt(r.fields);
+    if(bv)bv.split(', ').forEach(function(x){b[x.trim()]=1;});
+    if(tv)tv.split(', ').forEach(function(x){t[x.trim()]=1;});
   });
-  var bandaSelect = document.getElementById('filter-banda');
-  Object.keys(bandas).sort().forEach(function(b) {
-    var o = document.createElement('option'); o.value = b; o.textContent = b; bandaSelect.appendChild(o);
-  });
-  var tipoSelect = document.getElementById('filter-tipo');
-  Object.keys(tipos).sort().forEach(function(t) {
-    var o = document.createElement('option'); o.value = t; o.textContent = t; tipoSelect.appendChild(o);
-  });
+  var bs=document.getElementById('fb');
+  Object.keys(b).sort().forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;bs.appendChild(o);});
+  var ts=document.getElementById('ft');
+  Object.keys(t).sort().forEach(function(x){var o=document.createElement('option');o.value=x;o.textContent=x;ts.appendChild(o);});
 }
-
-function applyFilters() {
-  var search = document.getElementById('search').value.toLowerCase().trim();
-  var banda = document.getElementById('filter-banda').value;
-  var tipo = document.getElementById('filter-tipo').value;
-  var hideStock = document.getElementById('hide-stock').checked;
-  var filtered = allProducts.filter(function(r) {
-    var f = r.fields;
-    if (!f['Visible en cat\u00e1logo']) return false;
-    var stock = f['Stock actual'] || 0;
-    if (hideStock && stock <= 0) return false;
-    var nombre = (f['Nombre art\u00edculo'] || '').toLowerCase();
-    var bandaVal = getBanda(f).toLowerCase();
-    if (search && !nombre.includes(search) && !bandaVal.includes(search)) return false;
-    if (banda && !getBanda(f).includes(banda)) return false;
-    if (tipo && !getTipo(f).includes(tipo)) return false;
+function applyFilters(){
+  var s=document.getElementById('search').value.toLowerCase().trim();
+  var b=document.getElementById('fb').value;
+  var t=document.getElementById('ft').value;
+  var h=document.getElementById('hs').checked;
+  var fil=AP.filter(function(r){
+    var f=r.fields;
+    if(!f['Visible en cat\u00e1logo'])return false;
+    if(h&&(f['Stock actual']||0)<=0)return false;
+    var n=(f['Nombre art\u00edculo']||'').toLowerCase();
+    var bv=gb(f).toLowerCase();
+    if(s&&!n.includes(s)&&!bv.includes(s))return false;
+    if(b&&!gb(f).includes(b))return false;
+    if(t&&!gt(f).includes(t))return false;
     return true;
   });
-  var grid = document.getElementById('grid');
-  grid.innerHTML = '';
-  if (filtered.length === 0) {
-    grid.innerHTML = '<div class="empty"><p>No se encontraron productos</p></div>';
-  } else {
-    filtered.forEach(function(r) { grid.appendChild(renderCard(r)); });
-  }
-  var tot
+  var g=document.getElementById('grid');
+  g.innerHTML='';
+  if(fil.length===0){g.innerHTML='<div class="empty"><p>No se encontraron productos</p></div>';}
+  else{fil.forEach(function(r){g.appendChild(rc(r));});}
+  var n=fil.length;
+  document.getElementById('count').textContent=n+' producto'+(n!==1?'s':'');
+}
+init();
+</script>
+</body>
+</html>
