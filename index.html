@@ -138,16 +138,24 @@ var AP=[];
 var BM={};
 var TM={};
 function fa(t,cb){
-  var u='https://api.airtable.com/v0/'+BID+'/'+encodeURIComponent(t)+'?pageSize=100';
-  var x=new XMLHttpRequest();
-  x.open('GET',u,true);
-  x.setRequestHeader('Authorization','Bearer '+TK);
-  x.onload=function(){
-    if(x.status===200){cb(null,JSON.parse(x.responseText).records);}
-    else{cb('Error '+x.status);}
-  };
-  x.onerror=function(){cb('Error de red');};
-  x.send();
+  var all=[];
+  function fp(off){
+    var u='https://api.airtable.com/v0/'+BID+'/'+encodeURIComponent(t)+'?pageSize=100'+(off?'&offset='+off:'');
+    var x=new XMLHttpRequest();
+    x.open('GET',u,true);
+    x.setRequestHeader('Authorization','Bearer '+TK);
+    x.onload=function(){
+      if(x.status===200){
+        var d=JSON.parse(x.responseText);
+        all=all.concat(d.records);
+        if(d.offset){fp(d.offset);}
+        else{cb(null,all);}
+      }else{cb('Error '+x.status);}
+    };
+    x.onerror=function(){cb('Error de red');};
+    x.send();
+  }
+  fp(null);
 }
 function init(){
   fa('Bandas',function(e,r){
