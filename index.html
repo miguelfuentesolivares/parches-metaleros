@@ -254,6 +254,7 @@ function pf(records){
 }
 var soloDestacados=true;
 function applyFilters(){
+  if(document.getElementById('search').value.trim()||document.getElementById('fb').value||document.getElementById('ft').value||document.getElementById('fe').value){soloDestacados=false;}
   var s=document.getElementById('search').value.toLowerCase().trim();
   var b=document.getElementById('fb').value;
   var t=document.getElementById('ft').value;
