@@ -185,6 +185,11 @@ function serr(m){
   el.style.display='block';
   el.textContent='Error: '+m;
 }
+function ge(f){
+  if(!f['Banda'])return'';
+  if(Array.isArray(f['Banda']))return f['Banda'].map(function(i){return EM[i]||'';}).filter(Boolean).join(', ');
+  return EM[f['Banda']]||'';
+}
 function gb(f){
   if(!f['Banda'])return'';
   if(Array.isArray(f['Banda']))return f['Banda'].map(function(i){return BM[i]||i;}).join(', ');
