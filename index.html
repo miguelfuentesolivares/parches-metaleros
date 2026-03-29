@@ -137,6 +137,7 @@ var BID='appMgMlqoRZbOQSWF';
 var AP=[];
 var BM={};
 var TM={};
+var EM={};
 function fa(t,cb){
   var all=[];
   function fp(off){
@@ -160,7 +161,10 @@ function fa(t,cb){
 function init(){
   fa('Bandas',function(e,r){
     if(e){serr(e);return;}
-    r.forEach(function(x){BM[x.id]=x.fields['Nombre banda']||Object.values(x.fields)[0]||'';});
+    r.forEach(function(x){
+      BM[x.id]=x.fields['Nombre banda']||'';
+      EM[x.id]=x.fields['Estilo']||'';
+    });
     fa('Tipos de art\u00edculo',function(e2,r2){
       if(e2){serr(e2);return;}
       r2.forEach(function(x){TM[x.id]=x.fields['Nombre tipo']||Object.values(x.fields)[0]||'';});
