@@ -76,9 +76,48 @@ select:focus{border-color:var(--black)}
 footer{background:var(--black);padding:24px 32px;margin-top:1px;display:flex;align-items:center;justify-content:space-between}
 footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:uppercase}
 @media(max-width:600px){header{padding:0 16px}.hero{padding:28px 16px 24px}.filters{padding:12px 16px}.grid{grid-template-columns:repeat(2,1fr)}nav{display:flex;} #wabtn{margin-left:0;flex-shrink:0;} #iglink span.ig-texto{display:none;} #iglink svg.ig-icono{display:block!important;} .logo img{height:36px;} #iglink{display:flex;align-items:center;}.mb{padding:20px}}
+/* Estilos para el Popup de Bienvenida */
+.pop-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: none; /* Se activa por JS */
+  align-items: center;
+  justify-content: center;
+}
+.pop-content {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Ajuste para que se vea bien en PC y móvil */
+  aspect-ratio: 2/3;
+}
+.pop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.pop-btn {
+  position: absolute;
+  bottom: 12%; /* Ajustado sobre el botón de la imagen */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 8%;
+  background: rgba(255, 0, 0, 0); /* Invisible */
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
 </style>
 </head>
 <body>
+  <div id="popWelcome" class="pop-overlay">
+  <div class="pop-content">
+    <img src="Logo con guadaña par.jpg" alt="Bienvenido" class="pop-img">
+    <button class="pop-btn" onclick="closePop()"></button>
+  </div>
+</div>
 <header>
   <a class="logo" href="#">
     <img src="Logo500x500.png" alt="Parches Metaleros">
@@ -396,6 +435,28 @@ function enviarWhatsApp(){
   window.open('https://wa.me/'+tel+'?text='+encodeURIComponent(msg),'_blank');
 }
 init();
+  function checkPopup() {
+  const now = new Date();
+  // Configurado desde hoy 8 de abril hasta el 15 de abril de 2026
+  const startDate = new Date('2026-04-08T00:00:00');
+  const endDate = new Date('2026-04-15T23:59:59');
+  
+  const hasSeen = localStorage.getItem('popupVisto');
+
+  if (now >= startDate && now <= endDate && !hasSeen) {
+    document.getElementById('popWelcome').style.display = 'flex';
+    document.body.style.overflow = 'hidden'; // Bloquea scroll
+  }
+}
+
+function closePop() {
+  document.getElementById('popWelcome').style.display = 'none';
+  document.body.style.overflow = ''; // Libera scroll
+  localStorage.setItem('popupVisto', 'true'); // No vuelve a aparecer
+}
+
+// Ejecutamos la revisión al cargar la página
+checkPopup();
 </script>
 </body>
 </html>
