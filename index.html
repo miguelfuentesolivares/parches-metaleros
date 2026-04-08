@@ -109,9 +109,10 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
     <input type="search" id="search" placeholder="Buscar producto o banda..." oninput="applyFilters()">
   </div>
-  <select id="fb" onchange="applyFilters()"><option value="">Todas las bandas</option></select>
-  <select id="ft" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
-  <select id="fe" onchange="applyFilters()"><option value="">Todos los estilos</option></select>
+  <select id="fb" onchange="applyFilters()"><option value="">Bandas</option></select>
+  <select id="fe" onchange="applyFilters()"><option value="">Estilosstilos</option></select>
+  <select id="ft" onchange="applyFilters()"><option value="">Tipo de productos</option></select>
+  
   <label class="ft">
     <input type="checkbox" id="hs" onchange="applyFilters()" checked>
     Ocultar sin stock
