@@ -148,11 +148,6 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
   <select id="fb" onchange="applyFilters()"><option value="">Bandas</option></select>
   <select id="fe" onchange="applyFilters()"><option value="">Estilos</option></select>
   <select id="ft" onchange="applyFilters()"><option value="">Productos</option></select>
-  
-  <label class="ft">
-    <input type="checkbox" id="hs" onchange="applyFilters()" checked>
-    Ocultar sin stock
-  </label>
   <select id="orden" onchange="applyFilters()">
   <option value="default">Relevancia</option>
   <option value="precio-asc">Precio: menor a mayor</option>
@@ -160,6 +155,11 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
   <option value="nombre-asc">Nombre: A-Z</option>
   <option value="nombre-desc">Nombre: Z-A</option>
   </select>
+  <label class="ft">
+    <input type="checkbox" id="hs" onchange="applyFilters()" checked>
+    Ocultar sin stock
+  </label>
+  
   <span class="rc" id="count"></span>
 </div>
 <div>
