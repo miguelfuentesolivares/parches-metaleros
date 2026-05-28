@@ -139,10 +139,7 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
   <h1>CATALOGO <span>UNDERGROUND</span></h1>
   <p>Parches &middot; Poleras &middot; CDs &middot; Pines &middot; Santiago, Chile</p>
 </div>
-<div id="banner-destacados" style="display:none;background:#0a0a0a;padding:12px 32px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-  <span style="font-size:12px;color:#aaa;letter-spacing:0.08em;text-transform:uppercase;">Mostrando productos destacados</span>
-  <button onclick="verTodo()" style="background:var(--red);color:white;border:none;padding:8px 20px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:var(--fb);">Ver catálogo completo (<span id="banner-total">0</span> productos)</button>
-</div>
+
 <div class="filters" id="catalogo">
   <div class="sw">
     <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -319,17 +316,17 @@ function pf(records){
 }
 var soloDestacados=true;
 function applyFilters(){
-  if(document.getElementById('search').value.trim()||document.getElementById('fb').value||document.getElementById('ft').value||document.getElementById('fe').value){soloDestacados=false;}
   var s=document.getElementById('search').value.toLowerCase().trim();
   var b=document.getElementById('fb').value;
   var t=document.getElementById('ft').value;
   var e=document.getElementById('fe').value;
   var h=document.getElementById('hs').checked;
-  var fil=AP.filter(function(r){
+  var hayFiltros=s||b||t||e;
+
+  var filtrados=AP.filter(function(r){
     var f=r.fields;
     if(!f['Visible en cat\u00e1logo'])return false;
     if(h&&(f['Stock actual']||0)<=0)return false;
-    if(soloDestacados&&!f['Destacado'])return false;
     var n=(f['Nombre art\u00edculo']||'').toLowerCase();
     var bv=gb(f).toLowerCase();
     if(s&&!n.includes(s)&&!bv.includes(s))return false;
@@ -338,13 +335,44 @@ function applyFilters(){
     if(e&&!ge(f).includes(e))return false;
     return true;
   });
+
   var g=document.getElementById('grid');
   g.innerHTML='';
-  if(fil.length===0){g.innerHTML='<div class="empty"><p>No se encontraron productos</p></div>';}
-  else{fil.forEach(function(r){g.appendChild(rc(r));});}
-  var n=fil.length;
+
+  if(hayFiltros){
+    // Vista simple — todo junto
+    if(filtrados.length===0){
+      g.innerHTML='<div class="empty"><p>No se encontraron productos</p></div>';
+    } else {
+      filtrados.forEach(function(r){g.appendChild(rc(r));});
+    }
+  } else {
+    // Vista dos secciones — Destacados + Catálogo completo
+    var destacados=filtrados.filter(function(r){return r.fields['Destacado'];});
+    var resto=filtrados.filter(function(r){return !r.fields['Destacado'];});
+
+    if(destacados.length>0){
+      g.appendChild(separador('Destacados'));
+      destacados.forEach(function(r){g.appendChild(rc(r));});
+    }
+    if(resto.length>0){
+      g.appendChild(separador('Cat\u00e1logo completo'));
+      resto.forEach(function(r){g.appendChild(rc(r));});
+    }
+    if(filtrados.length===0){
+      g.innerHTML='<div class="empty"><p>No se encontraron productos</p></div>';
+    }
+  }
+
+  var n=filtrados.length;
   document.getElementById('count').textContent=n+' producto'+(n!==1?'s':'');
-  actualizarBanner();
+}
+
+function separador(texto){
+  var div=document.createElement('div');
+  div.style.cssText='grid-column:1/-1;padding:16px 20px 8px;border-top:2px solid #0a0a0a;margin-top:8px;';
+  div.innerHTML='<span style="font-family:\'Bebas Neue\',sans-serif;font-size:22px;letter-spacing:0.08em;color:#0a0a0a;">'+texto+'</span>';
+  return div;
 }
 function verTodo(){
   soloDestacados=false;
