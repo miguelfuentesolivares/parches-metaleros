@@ -223,7 +223,26 @@ function fa(t,cb){
   }
   fp(null);
 }
+var CACHE_MINUTOS=15;  
 function init(){
+  var ahora=new Date().getTime();
+  var cacheData=sessionStorage.getItem('pm_data');
+  var cacheTime=sessionStorage.getItem('pm_time');
+  if(cacheData&&cacheTime&&(ahora-parseInt(cacheTime))<CACHE_MINUTOS*60*1000){
+    var datos=JSON.parse(cacheData);
+    datos.bandas.forEach(function(x){
+      BM[x.id]=x.fields['Nombre banda']||'';
+      EM[x.id]=x.fields['Estilo']||'';
+    });
+    datos.tipos.forEach(function(x){TM[x.id]=x.fields['Nombre tipo']||Object.values(x.fields)[0]||'';});
+    AP=datos.productos;
+    pf(AP);
+    document.getElementById('loading').style.display='none';
+    document.getElementById('grid').style.display='grid';
+    applyFilters();
+    console.log('Cargado desde caché');
+    return;
+  }
   fa('Bandas',function(e,r){
     if(e){serr(e);return;}
     r.forEach(function(x){
@@ -236,10 +255,15 @@ function init(){
       fa('Productos',function(e3,r3){
         if(e3){serr(e3);return;}
         AP=r3;
-        pf(r3);
+        try{
+          sessionStorage.setItem('pm_data',JSON.stringify({bandas:r,tipos:r2,productos:r3}));
+          sessionStorage.setItem('pm_time',new Date().getTime().toString());
+        }catch(ex){console.log('Cache no disponible');}
+        pf(AP);
         document.getElementById('loading').style.display='none';
         document.getElementById('grid').style.display='grid';
         applyFilters();
+        console.log('Cargado desde Airtable');
       });
     });
   });
