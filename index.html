@@ -153,6 +153,13 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
     <input type="checkbox" id="hs" onchange="applyFilters()" checked>
     Ocultar sin stock
   </label>
+  <select id="orden" onchange="applyFilters()">
+  <option value="default">Relevancia</option>
+  <option value="precio-asc">Precio: menor a mayor</option>
+  <option value="precio-desc">Precio: mayor a menor</option>
+  <option value="nombre-asc">Nombre: A-Z</option>
+  <option value="nombre-desc">Nombre: Z-A</option>
+  </select>
   <span class="rc" id="count"></span>
 </div>
 <div>
@@ -368,12 +375,12 @@ function applyFilters(){
     if(filtrados.length===0){
       g.innerHTML='<div class="empty"><p>No se encontraron productos</p></div>';
     } else {
-      filtrados.forEach(function(r){g.appendChild(rc(r));});
+      ordenarProductos(filtrados).forEach(function(r){g.appendChild(rc(r));});
     }
   } else {
     // Vista dos secciones — Destacados + Catálogo completo
-    var destacados=filtrados.filter(function(r){return r.fields['Destacado'];});
-    var resto=filtrados.filter(function(r){return !r.fields['Destacado'];});
+    var destacados=ordenarProductos(filtrados.filter(function(r){return r.fields['Destacado'];}));
+    var resto=ordenarProductos(filtrados.filter(function(r){return !r.fields['Destacado'];}));
 
     if(destacados.length>0){
       g.appendChild(separador('Destacados'));
@@ -391,7 +398,20 @@ function applyFilters(){
   var n=filtrados.length;
   document.getElementById('count').textContent=n+' producto'+(n!==1?'s':'');
 }
-
+function ordenarProductos(lista){
+  var orden=document.getElementById('orden').value;
+  var copia=lista.slice();
+  if(orden==='precio-asc'){
+    copia.sort(function(a,b){return(a.fields['Precio venta']||0)-(b.fields['Precio venta']||0);});
+  } else if(orden==='precio-desc'){
+    copia.sort(function(a,b){return(b.fields['Precio venta']||0)-(a.fields['Precio venta']||0);});
+  } else if(orden==='nombre-asc'){
+    copia.sort(function(a,b){return(a.fields['Nombre art\u00edculo']||'').localeCompare(b.fields['Nombre art\u00edculo']||'');});
+  } else if(orden==='nombre-desc'){
+    copia.sort(function(a,b){return(b.fields['Nombre art\u00edculo']||'').localeCompare(a.fields['Nombre art\u00edculo']||'');});
+  }
+  return copia;
+}
 function separador(texto){
   var div=document.createElement('div');
   div.style.cssText='grid-column:1/-1;padding:16px 20px 8px;border-top:2px solid #0a0a0a;margin-top:8px;';
