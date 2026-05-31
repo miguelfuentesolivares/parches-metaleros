@@ -231,6 +231,7 @@ function fa(t,cb){
   fp(null);
 }
 var CACHE_MINUTOS=30;  
+var DIAS_NOVEDAD=30;  
 function init(){
   var ahora=new Date().getTime();
   var cacheData=sessionStorage.getItem('pm_data');
@@ -303,9 +304,10 @@ function rc(r){
   var f=r.fields;
   var b=gb(f),t=gt(f),s=f['Stock actual']||0,img=gi(f);
   var d=document.createElement('div');
+  var nuevo=esNovedad(f);
   d.className='card'+(s<=0?' oos':'');
   d.onclick=function(){om(r);};
-  d.innerHTML='<div class="ciw">'+(img?'<img src="'+img+'" alt="'+(f['Nombre art\u00edculo']||'')+'" loading="lazy">':ph())+'</div>'+
+  d.innerHTML='<div class="ciw">'+(img?'<img src="'+img+'" alt="'+(f['Nombre art\u00edculo']||'')+'" loading="lazy">':ph())+(nuevo?'<div style="position:absolute;top:10px;right:10px;background:var(--red);color:white;font-size:9px;font-weight:500;letter-spacing:0.12em;padding:3px 7px;">NUEVO</div>':'')+'</div>'+
     '<div class="cb"><div class="cband">'+b+'</div>'+
     '<div class="cname">'+(f['Nombre art\u00edculo']||'Sin nombre')+'</div>'+
     (f['Atributos']?'<div class="cattrs">'+f['Atributos']+'</div>':'')+
@@ -379,9 +381,14 @@ function applyFilters(){
     }
   } else {
     // Vista dos secciones — Destacados + Catálogo completo
+    var novedades=ordenarProductos(filtrados.filter(function(r){return esNovedad(r.fields)&&!r.fields['Destacado'];}));
     var destacados=ordenarProductos(filtrados.filter(function(r){return r.fields['Destacado'];}));
-    var resto=ordenarProductos(filtrados.filter(function(r){return !r.fields['Destacado'];}));
+    var resto=ordenarProductos(filtrados.filter(function(r){return !esNovedad(r.fields)&&!r.fields['Destacado'];}));
 
+    if(novedades.length>0){
+      g.appendChild(separador('Novedades'));
+      novedades.forEach(function(r){g.appendChild(rc(r));});
+    }
     if(destacados.length>0){
       g.appendChild(separador('Destacados'));
       destacados.forEach(function(r){g.appendChild(rc(r));});
@@ -397,6 +404,13 @@ function applyFilters(){
 
   var n=filtrados.length;
   document.getElementById('count').textContent=n+' producto'+(n!==1?'s':'');
+}
+function esNovedad(f){
+  if(!f['Fecha ingreso'])return false;
+  var fecha=new Date(f['Fecha ingreso']);
+  var ahora=new Date();
+  var dias=(ahora-fecha)/(1000*60*60*24);
+  return dias<=DIAS_NOVEDAD;
 }
 function ordenarProductos(lista){
   var orden=document.getElementById('orden').value;
