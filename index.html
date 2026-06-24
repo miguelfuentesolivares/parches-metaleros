@@ -89,6 +89,13 @@ select:focus{border-color:var(--black)}
 .mattrs{font-size:12px;color:var(--g4);line-height:1.6;padding-top:12px;border-top:1px solid var(--g2)}
 .mc{position:absolute;top:14px;right:14px;width:32px;height:32px;background:rgba(0,0,0,.6);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:2px;z-index:10}
 .mc svg{width:14px;height:14px;stroke:white}
+.popup-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:300;align-items:center;justify-content:center;opacity:0;transition:opacity 0.5s ease;}
+.popup-overlay.visible{display:flex;}
+.popup-overlay.show{opacity:1;}
+.popup-box{position:relative;max-width:420px;width:90%;max-height:90vh;}
+.popup-box img{width:100%;height:auto;display:block;border-radius:2px;}
+.popup-cerrar{position:absolute;top:-14px;right:-14px;width:32px;height:32px;background:#0a0a0a;border:2px solid white;border-radius:50%;color:white;font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;}
+.popup-cerrar:hover{background:var(--red);}
   .galeria{position:relative;background:#f5f5f5;}
 .galeria img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
 .galeria-flecha{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);border:none;color:white;width:36px;height:36px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;z-index:10;transition:background 0.2s;}
@@ -229,6 +236,12 @@ footer span{font-size:11px;color:var(--g6);letter-spacing:.08em;text-transform:u
     <button onclick="limpiarCarrito()" style="width:100%;background:none;border:none;padding:8px;font-size:11px;color:#aaa;cursor:pointer;margin-top:4px;letter-spacing:0.06em;text-transform:uppercase;">Limpiar lista</button>
   </div>
 </div>
+<div class="popup-overlay" id="popup" onclick="cerrarPopup(event)">
+  <div class="popup-box">
+    <button class="popup-cerrar" onclick="cerrarPopupDirecto()">&#x2715;</button>
+    <img src="Plantilla fotos web.jpg" alt="Parches Metaleros">
+  </div>
+</div>  
 <div class="mo" id="modal" onclick="cmo(event)">
   <div class="modal">
     <button class="mc" onclick="cmd()"><svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" fill="none"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
@@ -616,6 +629,30 @@ function enviarWhatsApp(){
   var tel='56955314333';
   window.open('https://wa.me/'+tel+'?text='+encodeURIComponent(msg),'_blank');
 }
+function abrirPopup(){
+  var p=document.getElementById('popup');
+  p.style.display='flex';
+  p.classList.add('visible');
+  setTimeout(function(){p.classList.add('show');},10);
+  document.body.style.overflow='hidden';
+}
+function cerrarPopupDirecto(){
+  var p=document.getElementById('popup');
+  p.classList.remove('show');
+  setTimeout(function(){
+    p.style.display='none';
+    p.classList.remove('visible');
+  },500);
+  document.body.style.overflow='';
+}
+function cerrarPopup(e){
+  if(e.target===document.getElementById('popup'))cerrarPopupDirecto();
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')cerrarPopupDirecto();
+});
+var fechaLimite=new Date('2025-07-08T23:59:59');
+if(new Date()<fechaLimite){setTimeout(function(){abrirPopup();},1500);}
 init();
   function checkPopup() {
   const now = new Date();
